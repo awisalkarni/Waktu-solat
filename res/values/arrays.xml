@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="location">
+        <item>JOHOR-Kota Tinggi, Mersing, Johor Bahru</item>
+        <item>JOHOR-Batu Pahat, Muar, Segamat, Gemas</item>
+        <item>JOHOR-Kluang dan Pontian 	</item>
+		<item>JOHOR-Pulau Aur dan Pemanggil</item>
+		<item>KEDAH-Puncak Gunung Jerai</item>
+		<item>KEDAH-Kota Setar, Kubang Pasu, Pokok Sena</item>
+		<item>KEDAH-Langkawi</item>
+		<item>KEDAH-Pendang, Kuala Muda, Yan</item>
+		<item>KEDAH-Padang Terap, Sik, Baling</item>
+		<item>KEDAH-Kulim, Bandar Baharu</item>
+		<item>KELANTAN-Jeli, Gua Musang (Mukim Galas, Bertam)</item>
+		<item>KELANTAN-K.Bharu,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tnh. Merah,Machang,Kuala Krai,Mukim Chiku</item>
+		<item>MELAKA-Bandar Melaka, Alor Gajah, Jasin, Masjid Tanah, Merlimau, Nyalas</item>
+		<item>NEGERI SEMBILAN-Port Dickson, Seremban, Kuala Pilah, Jelebu, Rembau</item>
+		<item>NEGERI SEMBILAN-Jempol, Tampin</item>
+		<item>PAHANG-Genting Sempah, Janda Baik, Bukit Tinggi</item>
+		<item>PAHANG-Bentong, Raub, Kuala Lipis</item>
+		<item>PAHANG-Maran, Chenor, Temerloh, Bera, Jerantut</item>
+		<item>PAHANG-Bukit Fraser, Genting Higlands, Cameron Higlands</item>
+		<item>PAHANG-Kuantan, Pekan, Rompin, Muadzam Shah</item>
+		<item>PAHANG-Pulau Tioman</item>
+		<item>PERAK-Bukit Larut</item>
+		<item>PERAK-Ipoh, Batu Gajah, Kampar, Sg. Siput dan Kuala Kangsar</item>
+		<item>PERAK-Tapah,Slim River dan Tanjung Malim</item>
+		<item>PERAK-Pengkalan Hulu, Grik dan Lenggong</item>
+		<item>PERAK-Temengor dan Belum</item>
+		<item>PERAK-Teluk Intan, Bagan Datoh, Kg.Gajah,Sri Iskandar, Beruas,Parit,Lumut,Setiawan dan Pulau Pangkor</item>
+		<item>PERAK-Selama, Taiping, Bagan Serai dan Parit Buntar</item>
+		<item>PERLIS-Kangar, Padang Besar, Arau</item>
+		<item>PULAU PINANG-Seluruh Negeri Pulau Pinang</item>
+		<item>SABAH-Zon 9 - Sipitang, Membakut, Beaufort, Kuala Penyu, Weston, Tenom, Long Pa Sia</item>
+		<item>SABAH-Zon 8 - Pensiangan, Keningau, Tambunan, Nabawan</item>
+		<item>SABAH-Zon 7 - Papar, Ranau, Kota Belud, Tuaran, Penampang, Kota Kinabalu</item>
+		<item>SABAH-Zon 6 - Gunung Kinabalu</item>
+		<item>SABAH-Zon 5 - Kudat, Kota Marudu, Pitas, Pulau Banggi</item>
+		<item>SABAH-Zon 3 - Lahad Datu, Kunak, Silabukan, Tungku, Sahabat, Semporna</item>
+		<item>SABAH-Zon 2 - Pinangah, Terusan, Beluran, Kuamut, Telupit</item>
+		<item>SABAH-Zon 1 - Sandakan, Bdr. Bkt. Garam, Semawang, Temanggong, Tambisan</item>
+		<item>SABAH-Zon 4 - Tawau, Balong, Merotai, Kalabakan</item>
+		<item>SARAWAK-Zon 1 - Limbang, Sundar, Terusan, Lawas</item>
+		<item>SARAWAK-Zon 8 - Kuching, Bau, Lundu,Sematan</item>
+		<item>SARAWAK-Zon 7 - Samarahan, Simunjan, Serian, Sebuyau, Meludam</item>
+		<item>SARAWAK-Zon 6 - Kabong, Lingga, Sri Aman, Engkelili, Betong, Spaoh, Pusa, Saratok, Roban, Debak</item>
+		<item>SARAWAK-Zon 5 - Belawai, Matu, Daro, Sarikei, Julau, Bitangor, Rajang</item>
+		<item>SARAWAK-Zon 4 - Igan, Kanowit, Sibu, Dalat, Oya</item>
+		<item>SARAWAK-Zon 3 - Song, Belingan, Sebauh, Bintulu, Tatau, Kapit</item>
+		<item>SARAWAK-Zon 2 - Niah, Belaga, Sibuti, Miri, Bekenu, Marudi</item>
+		<item>SELANGOR-Gombak,H.Selangor,Rawang,H.Langat,Sepang,Petaling,S.Alam</item>
+		<item>SELANGOR-Sabak Bernam, Kuala Selangor, Klang, Kuala Langat</item>
+		<item>Kuala Lumpur</item>
+		<item>Putrajaya</item>
+		<item>TERENGGANU-Kuala Terengganu, Marang 	</item>
+		<item>TERENGGANU-Kemaman Dungun</item>
+		<item>TERENGGANU-Hulu Terengganu</item>
+		<item>TERENGGANU-Besut, Setiu</item>
+		<item>Labuan</item>				
+    </string-array>
+    <string-array name="location_values">
+        <item>jhr02</item>
+        <item>jhr04</item>
+        <item>jhr03</item>
+		<item>jhr01</item>
+		<item>kdh06</item>
+		<item>kdh01</item>
+		<item>kdh05</item>
+		<item>kdh02</item>
+		<item>kdh03</item>
+		<item>kdh04</item>
+		<item>ktn03</item>
+		<item>ktn01</item>
+		<item>mlk01</item>
+		<item>ngs02</item>
+		<item>ngs01</item>
+		<item>phg05</item>
+		<item>phg04</item>
+		<item>phg03</item>
+		<item>phg06</item>
+		<item>phg02</item>
+		<item>phg01</item>
+		<item>prk07</item>
+		<item>prk02</item>
+		<item>prk01</item>
+		<item>prk03</item>
+		<item>prk04</item>
+		<item>prk05</item>
+		<item>prk06</item>
+		<item>pls01</item>
+		<item>png01</item>
+		<item>sbh09</item>
+		<item>sbh08</item>
+		<item>sbh07</item>
+		<item>sbh06</item>
+		<item>sbh05</item>
+		<item>sbh03</item>
+		<item>sbh02</item>
+		<item>sbh01</item>
+		<item>sbh04</item>
+		<item>swk01</item>
+		<item>swk08</item>
+		<item>swk07</item>
+		<item>swk06</item>
+		<item>swk05</item>
+		<item>swk04</item>
+		<item>swk03</item>
+		<item>swk02</item>
+		<item>sgr01</item>
+		<item>sgr02</item>
+		<item>sgr03</item>
+		<item>sgr04</item>
+		<item>trg01</item>
+		<item>trg04</item>
+		<item>trg03</item>
+		<item>trg02</item>
+		<item>wly02</item>
+    </string-array>
+</resources>
