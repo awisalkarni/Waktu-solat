@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="MyTheme" parent="@android:style/Theme.Holo.NoActionBar">
+    <style name="MainTheme" parent="@android:style/Theme.Holo.NoActionBar">
         <!-- Any customizations for your app running on devices with Theme.Holo here -->
     </style>
+    <style name="SettingTheme" parent="@android:style/Theme.Holo"></style>
 </resources>

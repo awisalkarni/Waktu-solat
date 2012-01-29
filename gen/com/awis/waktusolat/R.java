@@ -87,7 +87,8 @@ public final class R {
         /**  Any customizations for your app running on pre-3.0 devices here 
  Any customizations for your app running on devices with Theme.Holo here 
          */
-        public static final int MyTheme=0x7f070000;
+        public static final int MainTheme=0x7f070000;
+        public static final int SettingTheme=0x7f070001;
     }
     public static final class xml {
         public static final int preferences=0x7f040000;

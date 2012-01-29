@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="MyTheme" parent="@android:style/Theme.NoTitleBar">
+    <style name="MainTheme" parent="@android:style/Theme.NoTitleBar">
         <!-- Any customizations for your app running on pre-3.0 devices here -->
     </style>
+    <style name="SettingTheme" parent="@android:style/Theme"></style>
 </resources>
