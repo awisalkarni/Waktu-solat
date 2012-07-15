@@ -1,9 +1,10 @@
 package com.awis.waktusolat;
 
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
+
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-//import android.preference.ListPreference;
 
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
@@ -11,20 +12,24 @@ import android.preference.PreferenceActivity;
 
 public class Preferences extends PreferenceActivity implements OnSharedPreferenceChangeListener{
 	private ListPreference mListPreference;
-	static String m;
+	private GoogleAnalyticsTracker tracker;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+//		setTheme(R.style.Theme_Sherlock);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		tracker = WaktuSolatNew.tracker;
+		tracker.trackPageView("/WaktuSolat_setting");
+        tracker.dispatch();
 		addPreferencesFromResource(R.xml.preferences);
 		mListPreference = (ListPreference)getPreferenceScreen().findPreference("locationPref");
-        m = mListPreference.getEntry().toString();
         }
 	
 	@Override
     protected void onResume() {
         super.onResume();
-        m = mListPreference.getEntry().toString();
+        
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -37,14 +42,38 @@ public class Preferences extends PreferenceActivity implements OnSharedPreferenc
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,String key) {
-		if (key.equals("locationPref")) {
-	          m = mListPreference.getEntry().toString();
-	        }
+		if  (key.equals("locationPref")){
+			tracker.trackEvent(
+    	            "Setting",  // Category
+    	            "location changed",  // Action
+    	            mListPreference.getValue(), // Label
+    	            1);       // Value
+    		tracker.dispatch();
+			this.finish();
+		}
+		
 		
 	}
-	public static String getM(){
-		//new Preferences();
-		return m;
+	
+//	@Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                this.finish();
+//                overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+	
+	@Override
+	public void onBackPressed() {
+	    super.onBackPressed();
+	    this.finish();
+	    finish();
+	    overridePendingTransition(R.anim.push_right_in,R.anim.push_right_out);
 	}
+
 }
 

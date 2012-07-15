@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item 
-    android:id="@+id/lokasi" 
-    android:title="Tukar Lokasi"/>
-    <item 
     android:id="@+id/refresh" 
-    android:title="Kemaskini"/>
+    android:title="Kemaskini waktu solat"/>
+    <item 
+    android:id="@+id/lokasi" 
+    android:title="Tetapan"/>
 </menu>

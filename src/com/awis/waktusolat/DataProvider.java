@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.http.HttpResponse;
@@ -11,18 +13,59 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import android.text.Html;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
-public class DataProvider{
+import android.content.Context;
+import android.text.Html;
+import android.widget.Toast;
+
+public class DataProvider {
 	
 	private String location ;
 	private String data;
-	String text = null;
-	String loc,date,gmt,direction,prayertime,imsak,subuh,syuruk,zohor,asar,maghrib,isyak;
-	String imsakT,subuhT,syurukT,zohorT,asarT,maghribT,isyakT;
+	private String text = null;
+	private ArrayList<HashMap<String,String>> allData = new ArrayList<HashMap<String,String>>();
+	private String loc,date,gmt,direction,prayertime,imsak,subuh,syuruk,zohor,asar,maghrib,isyak;
+	private String imsakT,subuhT,syurukT,zohorT,asarT,maghribT,isyakT;
+	private Context context;
 	
+	public DataProvider(Context context){
+		this.context = context;
+	}
 	public void getLoc(String loc){
 		location = loc;
+	}
+	
+	public ArrayList<HashMap<String,String>> getDataNew(int month, String loc){
+		String url = "http://www.e-solat.gov.my/prayer_time.php?zon="+loc+"&year=&jenis=3&bulan="+month+"&LG=BM";
+		try {
+			Document doc = Jsoup.connect(url)
+					.timeout(20000)
+					.get();
+			Elements rows = doc.select("tr[bgcolor=#F3F2FF]");
+			for (Element row : rows){
+				HashMap<String,String> temp = new HashMap<String,String>();
+				temp.put("tarikh", row.child(0).text());
+				temp.put("hari", row.child(1).text());
+				temp.put("imsak", row.child(2).text());
+				temp.put("subuh", row.child(3).text());
+				temp.put("syuruk", row.child(4).text());
+				temp.put("zohor", row.child(5).text());
+				temp.put("asar", row.child(6).text());
+				temp.put("maghrib", row.child(7).text());
+				temp.put("isyak", row.child(8).text());
+				allData.add(temp);
+			}
+		} catch (IOException e) {
+//			Toast.makeText(context, "Connection timeout. Sila cuba lagi", Toast.LENGTH_SHORT).show();
+//			Toast toast = Toast.makeText(context, "Connection timeout. Sila cuba lagi", Toast.LENGTH_SHORT);
+//			toast.show();
+			e.printStackTrace();
+		}
+		return allData;
 	}
 	
 	public String getData2(){

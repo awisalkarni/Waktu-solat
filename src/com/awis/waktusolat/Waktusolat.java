@@ -14,8 +14,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Window;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -24,25 +25,23 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Waktusolat extends Activity implements OnClickListener{
-	DataProvider provider = new DataProvider();
+public class Waktusolat extends SherlockActivity implements OnClickListener{
+	private DataProvider provider = new DataProvider(this);
 	private Map<String,String> locs = new HashMap<String, String>();
-	private TextView txtView;
+//	private TextView txtView;
 	private TextView location, date, nowDate, imsak, subuh, syuruk, zohor, asar, maghrib, isyak;
-	private Button btLoc, btRefresh, btRefresh2, btQibla;
-	private ProgressDialog pDialog;
-	SharedPreferences prefs ;
+//	private Button btQibla;
+//	private ProgressDialog pDialog;
+	private LinearLayout loc_layout;
+	private SharedPreferences prefs ;
 	private String sendData = "";
-	static String realLoc;
+	protected static String realLoc;
 	private String loc2;
 	private String date2;
 	private String imsak2;
@@ -53,11 +52,13 @@ public class Waktusolat extends Activity implements OnClickListener{
 	private String maghrib2;
 	private String isyak2;
 	private String toSave;
-
-	static SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-	static Calendar cal = Calendar.getInstance();
-	String newCDate = fmt.format(cal.getTime());
-	static String dateToSend = fmt.format(cal.getTime());
+	
+	private boolean settingChanged;
+	public final static int THEME = R.style.Theme_Sherlock;
+	private static SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+	private static Calendar cal = Calendar.getInstance();
+//	private String newCDate = fmt.format(cal.getTime());
+//	private static String dateToSend = fmt.format(cal.getTime());
 	
 	
 	
@@ -65,60 +66,31 @@ public class Waktusolat extends Activity implements OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //pDialog = ProgressDialog.show(Waktusolat.this,"","Connecting to server...");
+        setTheme(THEME);
+        getLocationNames();
+//        requestWindowFeature(Window.FEATURE_PROGRESS);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         setContentView(R.layout.main);
+        setSupportProgressBarIndeterminateVisibility(false);
+//        setSupportProgressBarVisibility(false);
+        //pDialog = ProgressDialog.show(Waktusolat.this,"","Connecting to server...");
+        settingChanged = false;
         initUI();
-        readData();
-        writeSaved();
+        try{
+        	readData();
+            writeSaved();
+        }catch (Exception e){
+        	
+        }
+        
         
     }
+ 
     
-    public final static String getTime(){
-    	return dateToSend;
-    }
-    public void getLocationNames(){
+public void initUI(){
     	
-    	String[] locNames = getResources().getStringArray(R.array.location);
-    	String[] locIds = getResources().getStringArray(R.array.location_values);
-    	
-    	for (int i = 0; i <  locIds.length; i++) {
-    		locs.put(locIds[i], locNames[i]);
-    		}
-    }
-  
-public void fetcher(){
-	final ConnectivityManager conMgr =  (ConnectivityManager) getSystemService(Waktusolat.CONNECTIVITY_SERVICE);
-	final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
-	
-	if (activeNetwork != null && activeNetwork.getState() == NetworkInfo.State.CONNECTED) {
-		txtView.setText("");
-		pDialog = ProgressDialog.show(Waktusolat.this, "","Mengemaskini...", true);
-		tasker();
-		
-	} else {
-		Toast toast = Toast.makeText(getApplicationContext(), "Kemaskini gagal.\n Tiada sambungan internet.",Toast.LENGTH_SHORT);
-			toast.show();
-		readData();
-		writeSaved();
-	} 
-}
-
-
-
-
-public void tasker(){
-	DownloaderTask task = new DownloaderTask();
-	task.execute(new String[] {prefs.getString("locationPref", "sgr03")});
-	
-	getLocationNames();
-	realLoc = locs.get(prefs.getString("locationPref", "sgr03"));
-}
-  
-    
-    public void initUI(){
-    	
-    	txtView = (TextView) findViewById(R.id.textView1);
+//    	txtView = (TextView) findViewById(R.id.textView1);
     	location = (TextView) findViewById(R.id.location);
     	date = (TextView) findViewById(R.id.txtDate);
     	nowDate = (TextView) findViewById(R.id.txtNow);
@@ -130,56 +102,130 @@ public void tasker(){
     	maghrib = (TextView) findViewById(R.id.maghrib);
     	isyak = (TextView) findViewById(R.id.isyak);
     	
-    	btRefresh = (Button) findViewById(R.id.btRefresh);
-    	btRefresh.setOnClickListener(this);
+//    	btRefresh = (Button) findViewById(R.id.btRefresh);
+//    	btRefresh.setOnClickListener(this);
     	
-    	btRefresh2 = (Button) findViewById(R.id.btRefresh2);
-    	btRefresh2.setOnClickListener(this);
+//    	btRefresh2 = (Button) findViewById(R.id.btRefresh2);
+//    	btRefresh2.setOnClickListener(this);
     	
-    	btLoc = (Button) findViewById(R.id.btLoc);
-    	btLoc.setOnClickListener(this);
+    	loc_layout = (LinearLayout) findViewById(R.id.loc_layout);
+    	loc_layout.setOnClickListener(this);
     	
-    	btQibla = (Button) findViewById(R.id.btQibla);
-    	btQibla.setOnClickListener(this);
+//    	btLoc = (Button) findViewById(R.id.btLoc);
+//    	btLoc.setOnClickListener(this);
     	
-    	SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+//    	btQibla = (Button) findViewById(R.id.btQibla);
+//    	btQibla.setOnClickListener(this);
     	
-    	Calendar cal = Calendar.getInstance();
-    	String newCDate = fmt.format(cal.getTime());
-    	nowDate.setText("Tarikh hari ini: " + newCDate);
+//    	SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+//    	
+//    	Calendar cal = Calendar.getInstance();
+//    	String newCDate = fmt.format(cal.getTime());
+    	
+    }
+
+
+    public final static String getTime(){
+    	return fmt.format(cal.getTime());
     }
     
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-    	MenuInflater inflater = getMenuInflater();
-    	inflater.inflate(R.menu.menu, menu);
-    	return true;
-    } 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-    	switch (item.getItemId()){
-    	case R.id.lokasi : 
-    		Intent settingsActivity = new Intent(Waktusolat.this,Preferences.class);
-    		startActivity(settingsActivity);
-    		break;
-    	case R.id.refresh :
-    		fetcher();
-    		break;
-    	}
-    	return true;
+    public void getLocationNames(){
+    	
+    	String[] locNames = getResources().getStringArray(R.array.location);
+    	String[] locIds = getResources().getStringArray(R.array.location_values);
+    	
+    	for (int i = 0; i <  locIds.length; i++) {
+    		locs.put(locIds[i], locNames[i]);
+    		}
     }
+    
+    
+    
+    public void fetcher(){
+    	final ConnectivityManager conMgr =  (ConnectivityManager) getSystemService(Waktusolat.CONNECTIVITY_SERVICE);
+    	final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
+    	try{
+    		if (activeNetwork != null && activeNetwork.getState() == NetworkInfo.State.CONNECTED) {
+//			txtView.setText("");
+//			pDialog = ProgressDialog.show(Waktusolat.this, "","Mengemaskini...", true);
+			tasker();
+			
+		} else {
+			Toast toast = Toast.makeText(getApplicationContext(), "Kemaskini gagal.\n Tiada sambungan internet.",Toast.LENGTH_SHORT);
+				toast.show();
+			readData();
+			writeSaved();
+		}
+    }catch (Exception e){
+    	
+    }
+	 
+}
+
+
+
+
+public void tasker(){
+//	setSupportProgressBarVisibility(true);
+     setSupportProgressBarIndeterminateVisibility(true);
+	DownloaderTask task = new DownloaderTask();
+	task.execute(new String[] {prefs.getString("locationPref", "sgr03")});
+	
+//	getLocationNames();
+	realLoc = locs.get(prefs.getString("locationPref", "sgr03"));
+}
+  
+   
+    
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu){
+//    	
+//    	menu.add("Qiblat")
+//        .setIcon(R.drawable.qibla)
+//        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+//    	
+//    	menu.add("Kemaskini")
+//        .setIcon(R.drawable.navigation_refresh)
+//        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+//    	
+//    	
+//    	
+//    	MenuInflater inflater = getSupportMenuInflater();
+//    	inflater.inflate(R.menu.menu, menu);
+//    	return true;
+//    } 
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item){
+//    	settingChanged = false;
+//    	if (item.getTitle().equals("Kemaskini")){
+//    		fetcher();
+//    	}else if (item.getTitle().equals("Qiblat")){
+//    		Intent qibla = new Intent(Waktusolat.this, QiblaActivity.class);
+//    		startActivity(qibla);
+//    		overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
+//    	}else {
+//    		switch (item.getItemId()){
+//    	case R.id.lokasi : 
+//    		settingChanged = true;
+//    		Intent settingsActivity = new Intent(Waktusolat.this,Preferences.class);
+//    		startActivity(settingsActivity);
+//    		break;
+//    	case R.id.refresh :
+//    		fetcher();
+//    		break;
+//    	}
+//    	}
+//    	
+//    	
+//    	return true;
+//    }
     
     public void onClick(View v) {
-    	if (v==btLoc){
+    	if (v==loc_layout){
+    		settingChanged = true;
     		Intent settingsActivity = new Intent(Waktusolat.this,Preferences.class);
     		startActivity(settingsActivity);
-    	}else if(v==btRefresh){
-    		fetcher(); 
-    	}else if(v==btRefresh2){
-    		fetcher(); 
-    	}else if(v == btQibla){
-    		Intent qibla = new Intent(Waktusolat.this, QiblaActivity.class);
-    		startActivity(qibla);
+    		overridePendingTransition(R.anim.push_left_in,R.anim.push_left_out);
     	}
     }
     
@@ -189,6 +235,7 @@ public void tasker(){
     	    		sendData = provider.controller();
     	        	provider.convert(sendData);
     }
+    
     public void writeTotxt(){
     	location.setText(provider.getLocation());
     	date.setText(provider.getDate());
@@ -202,10 +249,29 @@ public void tasker(){
     	isyak.setText(provider.getIsyak());
     	
     }
+    
+    
      
     
     
-    public void setHighlight(){
+    @Override
+	protected void onResume() {
+    	cal = Calendar.getInstance();
+    	nowDate.setText("Tarikh hari ini: " + fmt.format(cal.getTime()));
+    	
+    	if (settingChanged == true && locs.get(prefs.getString("locationPref", "sgr03")).equals(location.getText()) != true){
+    		fetcher();
+    	}
+    	
+    	if (fmt.format(cal.getTime()).equals(date.getText()) != true){
+    		fetcher();
+    	}
+    	
+		super.onResume();
+	}
+
+
+	public void setHighlight(){
     	SimpleDateFormat timeFormat = new SimpleDateFormat("H:mm");
     	Calendar cal1 = Calendar.getInstance();
     	String timeNow = timeFormat.format(cal1.getTime());
@@ -273,12 +339,12 @@ public void tasker(){
          }
          finally {
             try {
-					osw.close();
-                   fOut.close();
-                   } catch (IOException e) {
-                   e.printStackTrace();
-                   }
-         }
+            	osw.close();
+            	fOut.close();
+            	} catch (IOException e) {
+            		e.printStackTrace();
+            		}
+            }
     }
     
 public boolean readData(){
@@ -344,13 +410,13 @@ public void writeSaved(){
   	maghrib.setText(maghrib2); 
   	isyak.setText(isyak2);
   	
-  	try{
-  		if (date2.equals(newCDate)!=true){
-  	    	fetcher();
-  	    }
-  	}catch (NullPointerException e){
-  		
-  	}
+//  	try{
+//  		if (date2.equals(newCDate)!=true){
+//  	    	fetcher();
+//  	    }
+//  	}catch (NullPointerException e){
+//  		
+//  	}
   	
 }
 
@@ -372,9 +438,11 @@ private class DownloaderTask extends AsyncTask<String, Integer, String> {
 		readData();
 		writeSaved();
 		
-		pDialog.dismiss();
+//		pDialog.dismiss();
     	Toast toast = Toast.makeText(getApplicationContext(), "Kemaskini berjaya.",Toast.LENGTH_SHORT);
 		toast.show();
+//		setSupportProgressBarVisibility(false);
+		setSupportProgressBarIndeterminateVisibility(false);
 		//Service
 		//startService(new Intent(Waktusolat.this,NotificationService.class));
 		

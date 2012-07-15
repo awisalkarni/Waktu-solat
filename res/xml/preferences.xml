@@ -8,5 +8,8 @@
     android:entryValues="@array/location_values"
     android:summary="Pilih lokasi kemudian refresh" android:title="Lokasi">
     </ListPreference>
+    <CheckBoxPreference android:key="notifyPref" android:summary="Notify jika masuk waktu" android:defaultValue="true" android:title="Notifications"/><CheckBoxPreference android:key="timeFormat" android:summary="Ubah format masa" android:title="Masa dalam 12 jam" android:defaultValue="true"/><Preference android:summary="Awislabs | 2012" android:title="About"/>
+    
+    
     
 </PreferenceScreen>
