@@ -139,7 +139,7 @@ public class QiblaActivity extends SherlockActivity{
     	txtgyroX = (TextView) findViewById(R.id.txtgyroX);
 //    	txtgyroY = (TextView) findViewById(R.id.txtgyroY);
 //    	txtgyroZ = (TextView) findViewById(R.id.txtgyroZ);
-    	txtgyroX.setText("Arah kiblat Malaysia sepatutnya 29X.XXX\njika anggaran terlalu jauh, sila lock GPS anda duhulu");
+    	txtgyroX.setText("Arah kiblat Malaysia sepatutnya 29X.XXX\njika anggaran terlalu jauh, sila lock GPS anda dahulu");
     	compassLayout = (LinearLayout)findViewById(R.id.compassLayout);
     	compassLayout.addView(mView);
 
