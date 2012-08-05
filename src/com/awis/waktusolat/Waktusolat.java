@@ -229,26 +229,26 @@ public void tasker(){
     	}
     }
     
-    public void sendLoc(String location) throws IOException{
-    				String loc2 = location;
-    	    		provider.getLoc(loc2);
-    	    		sendData = provider.controller();
-    	        	provider.convert(sendData);
-    }
-    
-    public void writeTotxt(){
-    	location.setText(provider.getLocation());
-    	date.setText(provider.getDate());
-    	
-    	imsak.setText(provider.getImsak());
-    	subuh.setText(provider.getSubuh());
-    	syuruk.setText(provider.getSyuruk());
-    	zohor.setText(provider.getZohor());
-    	asar.setText(provider.getAsar());
-    	maghrib.setText(provider.getMaghrib()); 
-    	isyak.setText(provider.getIsyak());
-    	
-    }
+//    public void sendLoc(String location) throws IOException{
+//    				String loc2 = location;
+//    	    		provider.getLoc(loc2);
+//    	    		sendData = provider.controller();
+//    	        	provider.convert(sendData);
+//    }
+//    
+//    public void writeTotxt(){
+//    	location.setText(provider.getLocation());
+//    	date.setText(provider.getDate());
+//    	
+//    	imsak.setText(provider.getImsak());
+//    	subuh.setText(provider.getSubuh());
+//    	syuruk.setText(provider.getSyuruk());
+//    	zohor.setText(provider.getZohor());
+//    	asar.setText(provider.getAsar());
+//    	maghrib.setText(provider.getMaghrib()); 
+//    	isyak.setText(provider.getIsyak());
+//    	
+//    }
     
     
      
@@ -313,7 +313,7 @@ public void tasker(){
     
     
     public void saveData(){
-    	writeTotxt();
+//    	writeTotxt();
     	toSave = location.getText()+"\n"+
     	date.getText()+"\n"+
     	imsak.getText()+"\n"+
@@ -424,11 +424,11 @@ private class DownloaderTask extends AsyncTask<String, Integer, String> {
 	
     @Override 
 	protected String doInBackground(String... loc) {
-    	try {
-			sendLoc(loc[0]);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//    	try {
+//			sendLoc(loc[0]);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		return asar2;
      }
     @Override

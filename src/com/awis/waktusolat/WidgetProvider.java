@@ -1,9 +1,5 @@
 package com.awis.waktusolat;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -66,64 +62,64 @@ public class WidgetProvider extends AppWidgetProvider {
 		});
 	}
 	
-	public void saveData(){
-//    	writeTotxt();
-    	String toSave = provider.getLocation()+"\n"+
-    	provider.getDate()+"\n"+
-    	provider.getImsak()+"\n"+
-    	provider.getSubuh()+"\n"+
-    	provider.getSyuruk()+"\n"+
-    	provider.getZohor()+"\n"+
-    	provider.getAsar()+"\n"+
-    	provider.getMaghrib()+"\n"+
-    	provider.getIsyak();
-    			
-    	FileOutputStream fOut = null;
-        OutputStreamWriter osw = null;
-        try{
-         fOut = context.openFileOutput("waktusolat.dat",Context.MODE_PRIVATE);      
-		  osw = new OutputStreamWriter(fOut);
-         osw.write(toSave);
-         osw.flush();
-         //Toast.makeText(context, "Settings saved",Toast.LENGTH_SHORT).show();
-         }
-         catch (Exception e) {      
-         e.printStackTrace();
-         //Toast.makeText(context, "Settings not saved",Toast.LENGTH_SHORT).show();
-         }
-         finally {
-            try {
-					osw.close();
-                   fOut.close();
-                   } catch (IOException e) {
-                   e.printStackTrace();
-                   }
-         }
-    }
-	
-	
-	
-	public void sendLoc(String location) throws IOException{
-		String loc2 = location;
-		provider.getLoc(loc2);
-    	provider.convert(provider.controller());
-}
+//	public void saveData(){
+////    	writeTotxt();
+//    	String toSave = provider.getLocation()+"\n"+
+//    	provider.getDate()+"\n"+
+//    	provider.getImsak()+"\n"+
+//    	provider.getSubuh()+"\n"+
+//    	provider.getSyuruk()+"\n"+
+//    	provider.getZohor()+"\n"+
+//    	provider.getAsar()+"\n"+
+//    	provider.getMaghrib()+"\n"+
+//    	provider.getIsyak();
+//    			
+//    	FileOutputStream fOut = null;
+//        OutputStreamWriter osw = null;
+//        try{
+//         fOut = context.openFileOutput("waktusolat.dat",Context.MODE_PRIVATE);      
+//		  osw = new OutputStreamWriter(fOut);
+//         osw.write(toSave);
+//         osw.flush();
+//         //Toast.makeText(context, "Settings saved",Toast.LENGTH_SHORT).show();
+//         }
+//         catch (Exception e) {      
+//         e.printStackTrace();
+//         //Toast.makeText(context, "Settings not saved",Toast.LENGTH_SHORT).show();
+//         }
+//         finally {
+//            try {
+//					osw.close();
+//                   fOut.close();
+//                   } catch (IOException e) {
+//                   e.printStackTrace();
+//                   }
+//         }
+//    }
+//	
+//	
+//	
+//	public void sendLoc(String location) throws IOException{
+//		String loc2 = location;
+//		provider.getLoc(loc2);
+//    	provider.convert(provider.controller());
+//}
 	
 	private class DownloaderTask extends AsyncTask<String, Integer, String> {
 		
 	    @Override 
 		protected String doInBackground(String... loc) {
-	    	try {
-				sendLoc(loc[0]);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+//	    	try {
+//				sendLoc(loc[0]);
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
 			return null;
 	     }
 	    @Override
 		protected void onPostExecute(String result) {
 	    	
-			saveData();
+//			saveData();
 			Toast toast = Toast.makeText(context.getApplicationContext(), "Kemaskini berjaya",Toast.LENGTH_SHORT);
 			toast.show();
 			

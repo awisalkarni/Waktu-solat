@@ -48,7 +48,7 @@ public class QiblaActivity extends SherlockActivity{
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(Waktusolat.THEME);
+//        setTheme(Waktusolat.THEME);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tracker = WaktuSolatNew.tracker;
         setContentView(R.layout.qibla);
