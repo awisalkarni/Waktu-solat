@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class WidgetProvider extends AppWidgetProvider {
 
 	private ImageButton widget_update;
-	private DataProvider provider;
+//	private DataProvider provider;
 	private SharedPreferences prefs;
 	private View layout;
 	private Context context;
@@ -26,7 +26,7 @@ public class WidgetProvider extends AppWidgetProvider {
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 			int[] appWidgetIds) {
 		this.context = context;
-		provider = new DataProvider(context);
+//		provider = new DataProvider(context);
 		initUI();
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		// Get all ids

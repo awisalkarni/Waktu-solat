@@ -1,19 +1,19 @@
 package com.awis.waktusolat;
 
-import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-
 import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
+
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 
 public class Preferences extends PreferenceActivity implements OnSharedPreferenceChangeListener{
 	private ListPreference mListPreference;
 	private GoogleAnalyticsTracker tracker;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,6 +26,7 @@ public class Preferences extends PreferenceActivity implements OnSharedPreferenc
 		mListPreference = (ListPreference)getPreferenceScreen().findPreference("locationPref");
         }
 	
+	@SuppressWarnings("deprecation")
 	@Override
     protected void onResume() {
         super.onResume();
@@ -33,7 +34,8 @@ public class Preferences extends PreferenceActivity implements OnSharedPreferenc
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     protected void onPause() {
         super.onPause();
         // Unregister the listener whenever a key changes            

@@ -1,13 +1,11 @@
 package com.awis.waktusolat;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
-import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Notification;
@@ -44,7 +42,6 @@ public class NotificationService extends Service {
 	private Date currTime;
 	private Map<String,String> locs = new HashMap<String, String>();
 	private NotificationManager mNotificationManager;
-	private Timer timer;
 	private final IBinder mBinder = new LocalBinder();
 	private boolean notifyPrefs;
 	
@@ -58,9 +55,6 @@ public class NotificationService extends Service {
 		getLocationNames();
 		initVar();
 		getFromDBandPopulate();
-//		timer = new Timer();
-//        timer.schedule(notifyTasker,0, 70000);
-//        Toast.makeText(this,"Servis notifikasi dimulakan...", Toast.LENGTH_LONG).show();
     }
 	
 	@Override
@@ -204,7 +198,7 @@ public void getLocationNames(){
 		
 
 		
-	} catch (ParseException e) {
+	} catch (Exception e) {
 		e.printStackTrace();
 	}
 	

@@ -499,7 +499,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int title=0x7f01003c;
+        public static final int title2=0x7f01003c;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -804,17 +804,19 @@ containing a value of this type.
         public static final int abs__tab_selected_holo=0x7f020052;
         public static final int abs__tab_selected_pressed_holo=0x7f020053;
         public static final int abs__tab_unselected_pressed_holo=0x7f020054;
-        public static final int back=0x7f020055;
-        public static final int block_bg=0x7f020056;
-        public static final int btn_qiblat=0x7f020057;
-        public static final int btn_qiblat1=0x7f020058;
-        public static final int button_back=0x7f020059;
-        public static final int icon=0x7f02005a;
-        public static final int icon2=0x7f02005b;
-        public static final int layout_selector=0x7f02005c;
-        public static final int location_back=0x7f02005d;
-        public static final int setting=0x7f02005e;
-        public static final int widget_refresh=0x7f02005f;
+        public static final int action_about=0x7f020055;
+        public static final int back=0x7f020056;
+        public static final int block_bg=0x7f020057;
+        public static final int btn_qiblat=0x7f020058;
+        public static final int btn_qiblat1=0x7f020059;
+        public static final int button_back=0x7f02005a;
+        public static final int icon=0x7f02005b;
+        public static final int icon2=0x7f02005c;
+        public static final int icon_overlay=0x7f02005d;
+        public static final int layout_selector=0x7f02005e;
+        public static final int location_back=0x7f02005f;
+        public static final int setting=0x7f020060;
+        public static final int widget_refresh=0x7f020061;
     }
     public static final class id {
         public static final int LayoutAll=0x7f060029;
@@ -1090,7 +1092,7 @@ containing a value of this type.
            <tr><td><code>{@link #SherlockActionBar_progressBarStyle com.awis.waktusolat:progressBarStyle}</code></td><td> Specifies a style resource to use for an embedded progress bar.</td></tr>
            <tr><td><code>{@link #SherlockActionBar_subtitle com.awis.waktusolat:subtitle}</code></td><td> Specifies subtitle text used for navigationMode="normal" </td></tr>
            <tr><td><code>{@link #SherlockActionBar_subtitleTextStyle com.awis.waktusolat:subtitleTextStyle}</code></td><td> Specifies a style to use for subtitle text.</td></tr>
-           <tr><td><code>{@link #SherlockActionBar_title com.awis.waktusolat:title}</code></td><td> Specifies title text used for navigationMode="normal" </td></tr>
+           <tr><td><code>{@link #SherlockActionBar_title2 com.awis.waktusolat:title2}</code></td><td> Specifies title text used for navigationMode="normal" </td></tr>
            <tr><td><code>{@link #SherlockActionBar_titleTextStyle com.awis.waktusolat:titleTextStyle}</code></td><td> Specifies a style to use for title text.</td></tr>
            </table>
            @see #SherlockActionBar_background
@@ -1110,7 +1112,7 @@ containing a value of this type.
            @see #SherlockActionBar_progressBarStyle
            @see #SherlockActionBar_subtitle
            @see #SherlockActionBar_subtitleTextStyle
-           @see #SherlockActionBar_title
+           @see #SherlockActionBar_title2
            @see #SherlockActionBar_titleTextStyle
          */
         public static final int[] SherlockActionBar = {
@@ -1385,9 +1387,9 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
           <p>This is a private symbol.
-          @attr name android:title
+          @attr name android:title2
         */
-        public static final int SherlockActionBar_title = 8;
+        public static final int SherlockActionBar_title2 = 8;
         /**
           <p>
           @attr description

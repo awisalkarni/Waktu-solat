@@ -10,7 +10,6 @@ import java.util.TimeZone;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -198,33 +197,38 @@ public class WaktuAdapter extends BaseAdapter {
 			waktuText.setText("Berbuka/" + data.get(position));
 		}else waktuText.setText(data.get(position));
 		// Log.e("Listing", data.get(position));
-
+		
 		try {
 			if (data.get(position).contains(highlightTime)) {
 
 				waktuText.setTextColor(Color.GREEN);
 
 			} else {
-				if (data.get(position).contains("Maghrib") || data.get(position).contains("Imsak")){
-//					if (data.get(position).contains("Imsak")) {
-
-						waktuText.setTextColor(Color.YELLOW);
-//						Log.d("waktusolat", "get this block! - Imsak");
-//					} if (data.get(position).contains("Maghrib")) {
-
-						waktuText.setTextColor(Color.YELLOW);
-//						Log.d("waktusolat", "get this block! - maghrib");
-//					}
-				}
-				 else {
 					waktuText.setTextColor(Color.WHITE);
-					Log.d("waktusolat", "get this block! - white");
 				}
-
-			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+//  ramadan
+//		try {
+//			if (data.get(position).contains(highlightTime)) {
+//
+//				waktuText.setTextColor(Color.GREEN);
+//
+//			} else {
+//				if (data.get(position).contains("Maghrib") || data.get(position).contains("Imsak")){
+//						waktuText.setTextColor(Color.YELLOW);
+//						waktuText.setTextColor(Color.YELLOW);
+//				}
+//				 else {
+//					waktuText.setTextColor(Color.WHITE);
+////					Log.d("waktusolat", "get this block! - white");
+//				}
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
 		return vi;
 	}

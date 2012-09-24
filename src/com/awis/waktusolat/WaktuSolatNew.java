@@ -37,12 +37,10 @@ public class WaktuSolatNew extends SherlockActivity {
 	public final static int THEME = R.style.Theme_Sherlock;
 	private DataProvider dp;
 	private ListView listWaktu;
-//	private ArrayAdapter<String> adapter ;
 	private ProgressDialog pDialog;
 	private ContentDBAdapter db;
 	private SharedPreferences prefs ;
 	private ArrayList<HashMap<String,String>> listTemp = new ArrayList<HashMap<String,String>>();
-//	private ArrayList<HashMap<String,String>> listFromDB = new ArrayList<HashMap<String,String>>();
 	private ArrayList<String> list = new ArrayList<String>();
 	private ArrayList<String> listHighlight = new ArrayList<String>();
 	private String locationPrefs;
@@ -70,12 +68,9 @@ public class WaktuSolatNew extends SherlockActivity {
 		time12 = prefs.getBoolean("timeFormat", true);
 		db = new ContentDBAdapter(this);
 		adapter = new WaktuAdapter(this, list);
-		dp = new DataProvider(this);
+		dp = new DataProvider();
 		initUI();
 		initVar();
-//		createService();
-//		startService(new Intent(WaktuSolatNew.this, NotificationService.class));
-//		getFromDBandPopulate();
 	}
 	
 	@Override
@@ -93,8 +88,6 @@ public class WaktuSolatNew extends SherlockActivity {
 		if (minutes > 0) { 
 			am.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 
 					SystemClock.elapsedRealtime() + minutes*60*1000, minutes*60*1000, pi); }
-//		Intent intent = new Intent(WaktuSolatNew.this, NotificationService.class);
-//		WaktuSolatNew.this.startService(intent);
 	}
 	
 	
@@ -111,13 +104,11 @@ public class WaktuSolatNew extends SherlockActivity {
         	if (mDay<10){
         		tarikhHariIni = new StringBuilder()
         		.append("0").append(mDay).append("-")
-                // Month is 0 based so add 1
                 .append("0").append(mMonth + 1).append("-")
                 .append(mYear).toString();
         	}else {
         		tarikhHariIni = new StringBuilder()
                 .append(mDay).append("-")
-                // Month is 0 based so add 1
                 .append("0").append(mMonth + 1).append("-")
                 .append(mYear).toString();
         	}
@@ -166,8 +157,6 @@ public class WaktuSolatNew extends SherlockActivity {
 		pDialog = new ProgressDialog(this);
 		listWaktu = (ListView) findViewById(R.id.listWaktu);
 		listWaktu.setAdapter(adapter);
-		
-//		getFromDBandPopulate();
 	}
 	
 	public void formatTimeAndPopulate(){
@@ -288,15 +277,6 @@ public class WaktuSolatNew extends SherlockActivity {
 	            isyakT = c.getString(isyak);
 	            listHighlight.add(imsakT);
 	            populateToList();
-//	    		list.add("Tarikh: "+c.getString(hari)+", "+c.getString(tarikh));
-//	    		list.add(locs.get(locationPrefs));
-//	    		list.add("Imsak: "+c.getString(imsak));
-//	    		list.add("Subuh: "+c.getString(subuh));
-//	    		list.add("Syuruk: "+c.getString(syuruk));
-//	    		list.add("Zohor: "+c.getString(zohor));
-//	    		list.add("Asar: "+c.getString(asar));
-//	    		list.add("Maghrib: "+c.getString(maghrib));
-//	    		list.add("Isyak: "+c.getString(isyak));
 	    		Log.e("Count", ""+c.getCount());
 	    	}else if(c.getCount() == 0){
 	    		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -346,7 +326,6 @@ public class WaktuSolatNew extends SherlockActivity {
 		}finally{
 			 db.close();
 			 c.close();
-//			 this.onCreate(null);
 		 }
 	}
 	
@@ -435,7 +414,6 @@ public class WaktuSolatNew extends SherlockActivity {
 			populateForHightlight();
 			adapter.notifyDataSetChanged();
 		}
-//		adapter.notifyDataSetChanged();
 	}
 	
 	public class getDataTask extends AsyncTask<Void,Void,String>{
@@ -456,7 +434,6 @@ public class WaktuSolatNew extends SherlockActivity {
 		@Override
 		protected void onPostExecute(String result) {
 			pDialog.dismiss();
-//			list.clear();
 			if (listTemp.size() == 0){
 				Toast.makeText(WaktuSolatNew.this, "Connection timeout. Masalah pada server www.e-solat.gov.my. Sila cuba lagi", Toast.LENGTH_SHORT).show();
 			}

@@ -8,7 +8,7 @@
         android:id="@+id/txtInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location" />
+        android:text="Pusing telefon anda dalam bentuk 8 untuk calibrate GPS" />
 
     <TextView
         android:id="@+id/txtgyroX"
